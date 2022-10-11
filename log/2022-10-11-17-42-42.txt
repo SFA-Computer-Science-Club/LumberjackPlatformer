@@ -1,0 +1,11 @@
+Log Created
+Pygame Version: 2.1.2
+Platformer version: SFA-Platformer 0.1a
+InputMode: keyboard
+DebugMode: True
+CurrentDirectory: /home/goose/Documents/Programming/ArcadeMachine/platformer
+Application starting
+Starting keyboard mode
+Level One mode chosen
+Level one loading for first time
+Process ending, nominal shutdown
