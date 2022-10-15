@@ -42,8 +42,9 @@ loaded = False
 #Looping main screen music
 pygame.mixer.init()
 pygame.mixer.music.load('Platformer_Main_Menu_Song.mp3')
-while not keyboard.is_pressed(' '):
-    pygame.mixer.music.play(-1)
+#pygame.mixer.music.play(-1)
+keyboard.on_press_key(" ", lambda _:print("A Key Pressed"))   
+keyboard.on_press_key(" ", pygame.mixer.music.play(-1))   
 
 
 #You can define some sprites or images here
