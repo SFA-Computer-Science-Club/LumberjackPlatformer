@@ -12,6 +12,7 @@ import os
 import subprocess
 import datetime
 import random
+import keyboard
 from assets.levels import levelOneMap
 
 
@@ -39,8 +40,9 @@ chosenMode = "none"
 loaded = False
 
 #Looping main screen music
+pygame.mixer.init()
 pygame.mixer.music.load('Platformer_Main_Menu_Song.mp3')
-while not keyboard.is_pressed():
+while not keyboard.is_pressed(' '):
     pygame.mixer.music.play(-1)
 
 
