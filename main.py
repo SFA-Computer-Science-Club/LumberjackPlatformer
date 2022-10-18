@@ -12,7 +12,6 @@ import os
 import subprocess
 import datetime
 import random
-import keyboard
 from assets.levels import levelOneMap
 
 
@@ -42,10 +41,7 @@ loaded = False
 #Looping main screen music
 pygame.mixer.init()
 pygame.mixer.music.load('Platformer_Main_Menu_Song.mp3')
-#pygame.mixer.music.play(-1)
-keyboard.on_press_key(" ", lambda _:print("A Key Pressed"))   
-keyboard.on_press_key(" ", pygame.mixer.music.play(-1))   
-
+pygame.mixer.music.play(-1)
 
 #You can define some sprites or images here
 dirtTexture = pygame.image.load(currentWorkDirectory + "/assets/image/dirt_block.png")
@@ -166,6 +162,8 @@ def main():
             if event.type == pygame.QUIT:
                 writeLog("Process ending, nominal shutdown")
                 return 0
+            if event.type == pygame.KEYDOWN:
+                pygame.mixer.music.stop()
         if chosenMode == "none":
             #ask user to choose mode or pull up main screen or something
             chosenMode = "levelOne"
