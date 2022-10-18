@@ -12,6 +12,7 @@ import os
 import subprocess
 import datetime
 import random
+import credits
 from assets.levels import levelOneMap
 
 
@@ -145,6 +146,11 @@ def main():
         #             #mainscreen.blit(pygame.transform.scale(backGroundOne, (SCREEN_WIDTH, SCREEN_HEIGHT - (64*6))), (0,0))  
         #             mainscreen.fill(SKYBLUE)
         # pygame.display.update()
+
+    def creditsPage():
+        credits.initialize_moving_text()
+        credits.draw_moving_text()
+        credits.main_loop()
 
     if inputMode == "keyboard":
         writeLog("Starting keyboard mode")
