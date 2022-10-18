@@ -6,6 +6,8 @@
 
 #Init some needed libraries
 #Make sure pygame 2+ is installed! Very important
+from csv import reader
+import csv
 import pygame
 import classes
 import os
@@ -38,7 +40,10 @@ logFile = pathToLogFolder + str(datetime.date.today()) + "-" + str(datetime.date
 chosenMode = "none"
 loaded = False
 
-
+#Looping main screen music
+pygame.mixer.init()
+pygame.mixer.music.load('Platformer_Main_Menu_Song.mp3')
+pygame.mixer.music.play(-1)
 
 #You can define some sprites or images here
 dirtTexture = pygame.image.load(currentWorkDirectory + "/assets/image/dirt_block.png")
@@ -110,21 +115,28 @@ def main():
         
         #mainscreen.fill(levelOneMap.skyColor)
         mainscreen.blit(pygame.transform.scale(pygame.image.load(currentWorkDirectory + levelOneMap.skyTexture), (SCREEN_WIDTH, SCREEN_HEIGHT)), (0,0))  
-        for rowIndex, row in enumerate(mapLevel):
-            for columnIndex, column in enumerate(row):
-                x = columnIndex * 64
-                y = rowIndex * 64
-                if column == 'x':
-                    mainscreen.blit(pygame.transform.scale(stoneTexture, (64,64)), (x,y))
-                elif column == 's':
-                    mainscreen.blit(pygame.transform.scale(goldStoneTexture, (64,64)), (x,y))
-                elif column == 'g':
-                    mainscreen.blit(pygame.transform.scale(grassTexture, (64,64)), (x,y))
-                elif column == 'b':
-                    mainscreen.blit(pygame.transform.scale(brickBlockTexture, (64,64)), (x,y))
-                elif column == 'f':
-                    mainscreen.blit(pygame.transform.scale(sfaCubeTexture, (64,64)), (x,y))
-            
+       
+        # open file in read mode
+        with open('assets/levels/TestMap4.csv', 'r') as read_obj:
+            # pass the file object to reader() to get the reader object
+            csv_reader = reader(read_obj)
+            # Iterate over each row in the csv using reader object
+            for rowIndex, row in enumerate(csv_reader):
+                for columnIndex, column in enumerate(row):
+                    x = columnIndex * 64
+                    y = rowIndex * 64
+                    if column == '1':
+                        mainscreen.blit(pygame.transform.scale(dirtTexture, (64,64)), (x,y))                    
+                    elif column == '2':
+                        mainscreen.blit(pygame.transform.scale(goldStoneTexture, (64,64)), (x,y))
+                    elif column == '3':
+                        mainscreen.blit(pygame.transform.scale(grassTexture, (64,64)), (x,y))
+                    elif column == '4':
+                        mainscreen.blit(pygame.transform.scale(sfaCubeTexture, (64,64)), (x,y))                    
+                    elif column == '5':
+                        mainscreen.blit(pygame.transform.scale(stoneTexture, (64,64)), (x,y))
+                    elif column == '6':
+                        mainscreen.blit(pygame.transform.scale(brickBlockTexture, (64,64)), (x,y))
 
 
         # mainscreen.fill(WHITE)
@@ -159,6 +171,8 @@ def main():
             if event.type == pygame.QUIT:
                 writeLog("Process ending, nominal shutdown")
                 return 0
+            if event.type == pygame.KEYDOWN:
+                pygame.mixer.music.stop()
         if chosenMode == "none":
             #ask user to choose mode or pull up main screen or something
             chosenMode = "levelOne"
