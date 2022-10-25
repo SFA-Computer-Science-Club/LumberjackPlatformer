@@ -1,0 +1,5 @@
+
+Application starting
+Starting keyboard mode
+Level One mode chosen
+Level one loading for first time
