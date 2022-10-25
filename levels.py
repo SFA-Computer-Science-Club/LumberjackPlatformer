@@ -21,7 +21,7 @@ class levels:
             #mapLevel = levelOneMap.level
         
         #mainscreen.fill(levelOneMap.skyColor)
-        self.mainscreen.blit(pygame.transform.scale(pygame.image.load(constants.skyTexture), (self.SCREEN_WIDTH, self.SCREEN_HEIGHT)), (0,0))  
+        self.mainscreen.blit(pygame.transform.scale(constants.skyTexture, (self.SCREEN_WIDTH, self.SCREEN_HEIGHT)), (0,0))  
         
         # open file in read mode
         with open('assets/levels/TestMap4.csv', 'r') as read_obj:

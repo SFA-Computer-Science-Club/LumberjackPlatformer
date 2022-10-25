@@ -45,7 +45,6 @@ pygame.mixer.music.load('Platformer_Main_Menu_Song.mp3')
 pygame.mixer.music.play(-1)
 
 
-
 def main():
     global loaded
     global chosenMode
@@ -63,6 +62,7 @@ def main():
     background = background.convert()
     background.fill(constants.WHITE)
     levelClass = levels.levels(mainscreen,currentWorkDirectory,SCREEN_WIDTH, SCREEN_HEIGHT)
+    creditClass = credits(mainscreen, 5)
 
     if inputMode == "keyboard":
         utilities.writeLog("Starting keyboard mode")
@@ -81,12 +81,12 @@ def main():
                 pygame.mixer.music.stop()
         if chosenMode == "none":
             #ask user to choose mode or pull up main screen or something
-            chosenMode = "levelOne"
+            chosenMode = "credits"
             utilities.writeLog("Level One mode chosen")
         elif chosenMode == "levelOne":
             levelClass.levelOne()
         elif chosenMode == "credits":
-            credits.__init__(mainscreen, 5)
+            creditClass.main_loop()
 
         clock.tick(60)
         #mainscreen.blit(background, (0,0))
